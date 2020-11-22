@@ -4,7 +4,7 @@ const barcode      = require('bwip-js');
 const QRCode       = require('qrcode');
 
 module.exports = function(router) {
-    router.post('/generate', function(req, res) {
+    router.get('/generate', function(req, res) {
         if(req.query.username && (req.query.username != undefined || req.query.username != null || req.query.username != '')) {
             var username = req.query.username;
 
@@ -56,11 +56,11 @@ module.exports = function(router) {
             username: req.decoded.username,
             created: {
                 unix: req.decoded.iat,
-                formatted: DateFormatted(req.decoded.iat, true)
+                formatted: DateFormatted(req.decoded.iat * 1000)
             },
             expires: {
                 unix: req.decoded.exp,
-                formatted: DateFormatted(req.decoded.exp, true)
+                formatted: DateFormatted(req.decoded.exp * 1000)
             }
         });
     });
@@ -117,10 +117,6 @@ module.exports = function(router) {
                     });
                 } else {
                     res.send('<img src="' + url + '" />');
-                    // res.json({
-                    //     success: true,
-                    //     url: url
-                    // });
                 }
             });
         } else {
@@ -131,6 +127,12 @@ module.exports = function(router) {
         }
     });
 
+    router.use(function(req, res, next){
+        res.status(404);
+        res.redirect('/404');
+        next();
+    });
+
     return router;
 }
 
@@ -138,10 +140,6 @@ function DateFormatted(date, isUnixTimestamp=false) {
     if(!date) {
         return undefined;
     } else {
-        if(isUnixTimestamp) {
-            this.date *= 1000;
-        }
-
         var d = new Date(date),
             minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
             ampm = d.getHours() >= 12 ? 'PM' : 'AM',
@@ -155,6 +153,6 @@ function DateFormatted(date, isUnixTimestamp=false) {
                 hours = 12;
             }
 
-            return days[d.getDay()]+'day '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
+        return days[d.getDay()]+'day '+months[d.getMonth()]+' '+d.getDate()+', '+d.getFullYear()+' '+hours+':'+minutes+' '+ampm;
     }
 }

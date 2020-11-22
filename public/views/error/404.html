@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Jquery (3.5.1) CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap (4.5.3) CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <title>404</title>
+</head>
+<body>
+    <div class="container-main">
+        <!-- <div class="container text-center animate">
+            <p class="animate"><span class="n1">4</span><span class="n2">0</span><span class="n3">4</span></p>
+        </div> -->
+    </div>
+</body>
+</html>
+
+<style>
+    .container-main {
+        display: flex;
+    }
+
+    p {
+        font-size: 3em;
+    }
+
+    ::selection,
+    ::-moz-selection {
+        background: violet !important;
+    }
+
+    .animate {
+        animation: movin 1s linear infinite;
+    }
+
+    @keyframes movin {
+        0%   { transform: scale(1)      rotate(0deg);   }
+        25%  { transform: scale(1.25)   rotate(15deg);  }
+        50%  { transform: scale(1.50)   rotate(0deg);   }
+        75%  { transform: scale(1.25)   rotate(-15deg); }
+        100% { transform: scale(1)      rotate(0deg);   }
+    }
+
+    .n1 {
+        animation: color 1s linear infinite;
+    }
+
+    .n2 {
+        animation: color 1.5s linear infinite;
+    }
+
+    .n3 {
+        animation: color 2s linear infinite;
+    }
+
+    @keyframes color {
+        20%  { color: rgb(255, 0, 0); background: burlywood;  padding: 0px; }
+        40%  { color: rgb(0, 255, 0); }
+        60%  { color: rgb(0, 0, 255); background: blueviolet; padding: 8px 0; }
+        80%  { color: rgb(0, 255, 0); }
+        100% { color: rgb(255, 0, 0); }
+    }
+</style>
+
+<script>
+    // cols
+    for(var i = 0; i < 20; i++) {
+        $('.container-main').append('<div class="container text-center animate"></div>')
+    }
+
+    // rows
+    for(var i = 0; i < 10; i++) {
+        $('.container').append('<p class="animate"><span class="n1">4</span><span class="n2">0</span><span class="n3">4</span></p>')
+    }
+</script>
