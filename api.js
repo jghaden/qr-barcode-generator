@@ -15,7 +15,7 @@ module.exports = function(router) {
                 success: true,
                 username: username,
                 api_key: api_key,
-                secret: secret
+                api_secret: secret
             });
         } else {
             res.json({
@@ -27,11 +27,11 @@ module.exports = function(router) {
 
     // Middleware for token
     router.use(function(req, res, next) {
-        var secret  = req.query.secret;
+        var api_secret  = req.query.api_secret;
         var api_key = req.query.api_key;
 
         if(api_key) {
-            jwt.verify(api_key, secret, function(err, decoded) {
+            jwt.verify(api_key, api_secret, function(err, decoded) {
                 if (err) {
                     res.json({
                         success: false,

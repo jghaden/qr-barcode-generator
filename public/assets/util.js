@@ -8,6 +8,10 @@ $('.form-group').on('keydown', function(e) {
     }
 });
 
+$('#submit-user').on('click', function() {
+    GenAPI();
+});
+
 function GenQRCode() {
     var api_key     = $('#api_key').val()    || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImpnaGFkZW4iLCJpYXQiOjE2MDYwMTMwNjF9.P0PLEdLr87boMF8Bz2WrfcNMtuhYKK16sM4rHB98jEM';
     var api_secret  = $('#api_secret').val() || 'Lrjihcih44G0pvkp';
@@ -15,7 +19,7 @@ function GenQRCode() {
 
     if($('#check_qr').prop('checked')) {
         if(text_data.length >= 1 && text_data.length <= 1500) {
-            var api_url = '/api/qrcode/?api_key=' + api_key + '&secret=' + api_secret + '&data=' + text_data;
+            var api_url = '/api/qrcode/?api_key=' + api_key + '&api_secret=' + api_secret + '&data=' + text_data;
             $.get(api_url, function(data, status) {
                 if(data.success == false) {
                     alert(data.message);
@@ -41,7 +45,7 @@ function GenQRCode() {
         }
 
         if(text_data.length >= 1 && text_data.length <= 20) {
-            var api_url = '/api/barcode/?api_key=' + api_key + '&secret=' + api_secret + '&data=' + text_data + '&scale=' + scale + '&height=' + height + '&label=' + showLabel + '&align=' + align;
+            var api_url = '/api/barcode/?api_key=' + api_key + '&api_secret=' + api_secret + '&data=' + text_data + '&scale=' + scale + '&height=' + height + '&label=' + showLabel + '&align=' + align;
             $.get(api_url, function(data, status) {
                 if(data.success == false) {
                     alert(data.message);
@@ -82,4 +86,18 @@ function UpdateScaleValue() {
 
 function UpdateHeightValue() {
     $('#height_val').text($('#height').val());
+}
+
+function GenAPI() {
+    var username = $('#username').val() || 'johndoe2020';
+
+    var api_url = '/api/generate/?username=' + username;
+            $.get(api_url, function(data, status) {
+                if(data.success == false) {
+                    alert(data.message);
+                } else {
+                    $('#api_key').val(data.api_key);
+                    $('#api_secret').val(data.api_secret);
+                }
+            });
 }

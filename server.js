@@ -25,6 +25,10 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });
 
+app.get('/generate/api', function(req, res) {
+    res.sendFile(path.join(__dirname + '/public/views/generate-api.html'));
+});
+
 app.get('/404', function(req, res) {
     res.sendFile(path.join(__dirname + '/public/views/error/404.html'));
 });
