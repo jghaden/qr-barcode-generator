@@ -41,6 +41,10 @@ $ npm start
 
 # Running
 
+### Generate API key and secret by providing a username
+
+![](/pics/api-gen.png)
+
 ### Leaving the API Key and Secret blank will use default values
 
 ![](/pics/gen-with-default.png)
