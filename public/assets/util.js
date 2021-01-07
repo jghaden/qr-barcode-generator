@@ -2,14 +2,22 @@ $('#submit').on('click', function() {
     GenQRCode();
 });
 
-$('.form-group').on('keydown', function(e) {
+$('.code-gen').on('keydown', function(e) {
     if(e.keyCode == 13) {
+        e.preventDefault();
         GenQRCode();
     }
 });
 
 $('#submit-user').on('click', function() {
     GenAPI();
+});
+
+$('.api-gen').on('keydown', function(e) {
+    if(e.keyCode == 13) {
+        e.preventDefault();
+        GenAPI();
+    }
 });
 
 function GenQRCode() {
