@@ -27,7 +27,7 @@ function GenQRCode() {
 
     if($('#check_qr').prop('checked')) {
         if(text_data.length >= 1 && text_data.length <= 1500) {
-            var api_url = '/api/qrcode/?api_key=' + api_key + '&api_secret=' + api_secret + '&data=' + text_data;
+            var api_url = '/api/qr/generate/?api_key=' + api_key + '&api_secret=' + api_secret + '&data=' + text_data;
             $.get(api_url, function(data, status) {
                 if(data.success == false) {
                     alert(data.message);
@@ -53,7 +53,7 @@ function GenQRCode() {
         }
 
         if(text_data.length >= 1 && text_data.length <= 20) {
-            var api_url = '/api/barcode/?api_key=' + api_key + '&api_secret=' + api_secret + '&data=' + text_data + '&scale=' + scale + '&height=' + height + '&label=' + showLabel + '&align=' + align;
+            var api_url = '/api/barcode/generate/?api_key=' + api_key + '&api_secret=' + api_secret + '&data=' + text_data + '&scale=' + scale + '&height=' + height + '&label=' + showLabel + '&align=' + align;
             $.get(api_url, function(data, status) {
                 if(data.success == false) {
                     alert(data.message);
@@ -99,7 +99,7 @@ function UpdateHeightValue() {
 function GenAPI() {
     var username = $('#username').val() || 'johndoe2020';
 
-    var api_url = '/api/generate/?username=' + username;
+    var api_url = '/api/users/generate/?username=' + username;
             $.get(api_url, function(data, status) {
                 if(data.success == false) {
                     alert(data.message);
