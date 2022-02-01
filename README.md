@@ -33,7 +33,7 @@ If you wish to have [**nodemon**](https://www.npmjs.com/package/nodemon) watch y
 $ npm dev
 ```
 
-or if you wish to simplay start the server only with Node (such as a deployed application), run:
+or you wish to start the server only with Node:
 
 ```
 $ npm start
